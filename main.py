@@ -1,9 +1,16 @@
+
 import numpy as np
-import random
-input_array = np.random.randint(1,1000,size=(3,))
-weight_array = np.random.randint(1,10,size=(3,))
-bias = random.randint(1,10)
 
-weighted_sum = np.dot(input_array , weight_array) + bias
+from activations import relu, sigmoid, tanh_manual
 
-print(weighted_sum)
+
+x = np.array([-5, -2, 0, 3, 7])
+
+relu_ans = relu(x)
+sigmoid_ans = sigmoid(x)
+tanh_ans = tanh_manual(x)
+
+
+print("ReLU    :", relu_ans)
+print("Sigmoid :", np.round(sigmoid_ans, 5))
+print("Tanh    :", np.round(tanh_ans, 5))

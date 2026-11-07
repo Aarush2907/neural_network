@@ -1,21 +1,29 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
-def relu(x: np.ndarray) -> np.ndarray:
-    return np.maximum(0, x)
+from activations import relu, sigmoid, tanh_manual
 
-
-def sigmoid(x: np.ndarray) -> np.ndarray:
-    return (1 / (1 + np.exp(-x)))
-
-def tanh_manual(x: np.ndarray) -> np.ndarray:
-    return ((np.exp(x) - np.exp(-x)) / (np.exp(x) + np.exp(-x)))
+x = np.linspace(-5, 5, 200)
 
 
+relu_y = relu(x)
+sigmoid_y = sigmoid(x)
+tanh_y = tanh_manual(x)
 
-x = np.array([-5, -2, 0, 3, 7])
-relu_ans = relu(x)
-sigmoid_ans = sigmoid(x)
-tanh_ans  = tanh_manual(x)
-print("relu : " , relu_ans)
-print("sigmoid : " , np.round(sigmoid_ans , 5))
-print("Tanh : " , np.round(tanh_ans , 5))
+plt.figure(figsize=(10,6))
+
+plt.plot(x, relu_y, label="ReLU")
+plt.plot(x, sigmoid_y, label="Sigmoid")
+plt.plot(x, tanh_y, label="Tanh")
+
+plt.title("Activation Functions")
+plt.xlabel("Input (x)")
+plt.ylabel("Output f(x)")
+
+plt.axhline(y=0, color="black", linewidth=0.5)
+plt.axvline(x=0, color="black", linewidth=0.5)
+
+plt.grid(True)
+plt.legend()
+
+plt.show()
